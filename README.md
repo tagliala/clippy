@@ -9,7 +9,7 @@ text onto the client's clipboard. Here is what Clippy looks like on GitHub:
 Here is a sample Rails (Ruby) helper that can be used to place Clippy on a
 page:
 
-    def clippy(text, bgcolor='#FFFFFF')
+    def clippy(htmlElementId, bgcolor='#FFFFFF')
       html = <<-EOF
         <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
                 width="110"
@@ -19,7 +19,7 @@ page:
         <param name="allowScriptAccess" value="always" />
         <param name="quality" value="high" />
         <param name="scale" value="noscale" />
-        <param NAME="FlashVars" value="text=#{text}">
+        <param NAME="FlashVars" value="id=#{htmlElementId}">
         <param name="bgcolor" value="#{bgcolor}">
         <embed src="/flash/clippy.swf"
                width="110"
@@ -29,7 +29,7 @@ page:
                allowScriptAccess="always"
                type="application/x-shockwave-flash"
                pluginspage="http://www.macromedia.com/go/getflashplayer"
-               FlashVars="text=#{text}"
+               FlashVars="id=#{idhtmlElementId}"
                bgcolor="#{bgcolor}"
         />
         </object>
