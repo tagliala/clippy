@@ -10,13 +10,17 @@ class Clippy {
   // Main
   static function main() {
     var id:String = flash.Lib.current.loaderInfo.parameters.id;
+    var copied:String = flash.Lib.current.loaderInfo.parameters.copied;
+    var copyto:String = flash.Lib.current.loaderInfo.parameters.copyto;
+    if(copied == null){ copied = "copied!";};
+    if(copyto == null){ copyto = "copy to clipboard";};
     
     // label
     
     var label:TextField = new TextField();
     var format:TextFormat = new TextFormat("Arial", 10);
     
-    label.text = "copy to clipboard";
+    label.text = copyto;
     label.setTextFormat(format);
     label.textColor = 0x888888;
     label.selectable = false;
@@ -36,7 +40,7 @@ class Clippy {
     
     button.addEventListener(MouseEvent.MOUSE_UP, function(e:MouseEvent) {
       flash.system.System.setClipboard(ExternalInterface.call("(function(id){if(document.getElementById(id)){ return(document.getElementById(id).innerHTML) }else{alert('WARN: ' + id + ' Not found ');}})",id));
-      label.text = "copied!";
+      label.text = copied;
       label.setTextFormat(format);
     });
     
@@ -46,7 +50,7 @@ class Clippy {
     
     button.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent) {
       label.visible = false;
-      label.text = "copy to clipboard";
+      label.text = copyto;
       label.setTextFormat(format);
     });
     
