@@ -15,6 +15,9 @@ class Clippy {
     if(copied == null){ copied = "copied!";};
     if(copyto == null){ copyto = "copy to clipboard";};
 
+    flash.Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
+    flash.Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
+
     // label
 
     var label:TextField = new TextField();
