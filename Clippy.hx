@@ -43,6 +43,7 @@ class Clippy {
 
     button.addEventListener(MouseEvent.MOUSE_UP, function(e:MouseEvent) {
       flash.system.System.setClipboard(ExternalInterface.call("(function(id){if(document.getElementById(id)){ return(document.getElementById(id).innerHTML) }else{alert('WARN: ' + id + ' Not found ');}})",id));
+      ExternalInterface.call("(function(id){if(clippyCopiedCallback){ clippyCopiedCallback(id)}})", id);
       label.text = copied;
       label.setTextFormat(format);
     });
