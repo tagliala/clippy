@@ -90,6 +90,13 @@ SWF, run the following from Clippy's root directory:
 If that is successful, copy `build/clippy.swf` to your
 `public` directory or wherever your static assets can be found.
 
+Why this fork?
+--------------
+
+This fork uses textContent and innerText (IE < 9) instead of innerHTML when copying text to clipboard. You will save an headache when your text contains `&` or other html entities.
+
+Moreover, source code was updated to compile with latest version of haxe and swfmill, as you can see there: https://github.com/mojombo/clippy/pull/16/commits 
+
 Contribute
 ----------
 
