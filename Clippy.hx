@@ -6,6 +6,10 @@ import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.external.ExternalInterface;
 
+class ButtonUp extends MovieClip { public function new() { super(); } }
+class ButtonOver extends MovieClip { public function new() { super(); } }
+class ButtonDown extends MovieClip { public function new() { super(); } }
+
 class Clippy {
   // Main
   static function main() {
@@ -36,13 +40,13 @@ class Clippy {
 
     var button:SimpleButton = new SimpleButton();
     button.useHandCursor = true;
-    button.upState = flash.Lib.attach("button_up");
-    button.overState = flash.Lib.attach("button_over");
-    button.downState = flash.Lib.attach("button_down");
-    button.hitTestState = flash.Lib.attach("button_down");
+    button.upState = flash.Lib.attach("ButtonUp");
+    button.overState = flash.Lib.attach("ButtonOver");
+    button.downState = flash.Lib.attach("ButtonDown");
+    button.hitTestState = flash.Lib.attach("ButtonDown");
 
     button.addEventListener(MouseEvent.MOUSE_UP, function(e:MouseEvent) {
-      flash.system.System.setClipboard(ExternalInterface.call("(function(id){if(document.getElementById(id)){ return(document.getElementById(id).innerHTML) }else{alert('WARN: ' + id + ' Not found ');}})",id));
+      flash.system.System.setClipboard(ExternalInterface.call("(function(id){elem=document.getElementById(id);if(elem){ if ( typeof elem.textContent === 'string' ) { return elem.textContent; } else if ( typeof elem.innerText === 'string' ) { return elem.innerText.replace( /\\r\\n/g, '' ); } }else{alert('WARN: ' + id + ' Not found ');}})",id));
       ExternalInterface.call("(function(id){if(clippyCopiedCallback){ clippyCopiedCallback(id)}})", id);
       label.text = copied;
       label.setTextFormat(format);
